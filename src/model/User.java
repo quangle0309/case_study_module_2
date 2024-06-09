@@ -10,12 +10,12 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String name;
-    private long phoneNumber;
+    private String phoneNumber;
 
-    User(){
+    public User(){
     }
 
-    public User(String username, String password, String name, long phoneNumber){
+    public User(String username, String password, String name, String phoneNumber){
         this.username = username;
         this.password = password;
         this.name = name;
@@ -46,16 +46,20 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
-        return "Username: " + username + ", Password: " + password + ", Name: " + name + ", Phone: " + phoneNumber;
+        return "Tên đăng nhập: " + username + ", Mật khẩu: " + password + ", Họ tên: " + name + ", SDT: " + phoneNumber;
+    }
+
+    public void borrowBook(Book book) {
+
     }
 }

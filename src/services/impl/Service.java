@@ -1,7 +1,6 @@
-package services;
+package services.impl;
 
 import model.User;
-import views.LibraryView;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Service {
     }
 
     public boolean checkLoginAdmin(String[] admin) {
-        return admin[0].equals("admin") && admin[1].equals("666666");
+        return admin[0].equals("ADMIN") && admin[1].equals("666666");
     }
 
     public boolean checkLoginUser(List<User> users, String[] accountLogin) {

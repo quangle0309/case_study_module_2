@@ -1,16 +1,21 @@
 package model;
 
-public class Book {
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Book implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String author;
-    private String publisher;
-    private int id;
+
     public Book() {};
 
-    public Book(String name, String author, String publisher) {
+    public Book(String name, String author) {
         this.name = name;
         this.author = author;
-        this.publisher = publisher;
     }
 
     public String getName() {
@@ -29,23 +34,22 @@ public class Book {
         this.author = author;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String toString() {
-        return "Name: " + name + ", author: " + author + ", publisher: " + publisher;
+        return "Tên sách: " + name + ", Tác giả: " + author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(name, book.name) &&
+                Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author);
     }
 }
