@@ -64,17 +64,18 @@ public class BookOnLoanRepo {
             if (key.equals(bookOnLoan)) {
                 if (value > quantity) {
                     bookOnLoanMap.put(key, value - quantity);
+                    writeFile(bookOnLoanMap);
+                    return true;
                 } else if (value == quantity) {
                     bookOnLoanMap.remove(key);
+                    writeFile(bookOnLoanMap);
+                    return true;
                 } else {
                     return false;
                 }
-            } else {
-                return false;
             }
         }
-        writeFile(bookOnLoanMap);
-        return true;
+        return false;
     }
 
     public HashMap<BookOnLoan, Integer> findByUserName(String username) {

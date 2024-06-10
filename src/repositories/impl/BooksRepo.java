@@ -64,17 +64,18 @@ public class BooksRepo {
             if (key.equals(book)) {
                 if (value > quantity) {
                     bookMap.put(key, value - quantity);
+                    writeFile(bookMap);
+                    return true;
                 } else if (value == quantity) {
                     bookMap.remove(key);
+                    writeFile(bookMap);
+                    return true;
                 } else {
                     return false;
                 }
-            } else {
-                return false;
             }
         }
-        writeFile(bookMap);
-        return true;
+        return false;
     }
 
     public HashMap<Book, Integer> findByName(String name) {
