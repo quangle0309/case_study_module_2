@@ -1,4 +1,4 @@
-package repositories.impl;
+package repositories;
 
 import model.User;
 import views.LibraryView;
@@ -21,9 +21,6 @@ public class UsersRepo {
         return usersRepo;
     }
 
-
-    LibraryView view = LibraryView.getLibraryView();
-
     public boolean add(User user) {
         if (!usersRepo.checkUsername(user.getUsername())) {
             List<User> users = getAll();
@@ -36,9 +33,8 @@ public class UsersRepo {
     }
 
     private void writeFile(List<User> users) {
-        try (
-                FileOutputStream fos = new FileOutputStream("src/data/users.dat");
-                ObjectOutputStream oos = new ObjectOutputStream(fos)
+        try (FileOutputStream fos = new FileOutputStream("src/data/users.dat");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
             oos.writeObject(users);
         } catch (IOException e) {

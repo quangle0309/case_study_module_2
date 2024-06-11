@@ -1,6 +1,5 @@
-package repositories.impl;
+package repositories;
 
-import model.Book;
 import model.BookOnLoan;
 
 import java.io.*;

@@ -3,21 +3,21 @@ package controller;
 import model.Book;
 import model.BookOnLoan;
 import model.User;
-import services.impl.BookOnLoanService;
-import services.impl.BookService;
-import services.impl.Service;
-import services.impl.UserService;
+import services.BookOnLoanService;
+import services.BookService;
+import services.Service;
+import services.UserService;
 import views.LibraryView;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class LibraryController {
-    UserService userService = UserService.getUserService();
-    BookService bookService = BookService.getBookService();
-    BookOnLoanService bookOnLoanService = BookOnLoanService.getBookOnLoanService();
-    LibraryView view = LibraryView.getLibraryView();
-    Service service = Service.getService();
+    private final UserService userService = UserService.getUserService();
+    private final BookService bookService = BookService.getBookService();
+    private final BookOnLoanService bookOnLoanService = BookOnLoanService.getBookOnLoanService();
+    private final LibraryView view = LibraryView.getLibraryView();
+    private final Service service = Service.getService();
 
 
     private static LibraryController libraryController;
@@ -32,18 +32,10 @@ public class LibraryController {
         return libraryController;
     }
 
-    User user;
-    Book book;
-    BookOnLoan bookOnLoan;
-    String str;
-    HashMap<Book, Integer> bookMap;
-    HashMap<BookOnLoan, Integer> bookOnLoanMap;
-    List<User> users;
     String[] data;
-    boolean result;
-    int quantity;
 
     public void start() {
+        boolean result;
         while (true) {
             int choice = view.mainStatusView();
             switch (choice) {
@@ -67,6 +59,9 @@ public class LibraryController {
     }
 
     private void handleUserLogin() {
+        boolean result;
+        User user;
+        List<User> users;
         while (true) {
             int choice = view.userLoginView();
             switch (choice) {
@@ -93,8 +88,15 @@ public class LibraryController {
     }
 
     private void handleAdmin() {
+        Book book;
+        String str;
+        int quantity;
+        List<User> users;
+        HashMap<Book, Integer> bookMap;
+        HashMap<BookOnLoan, Integer> bookOnLoanMap;
         while (true) {
             int choice = view.adminStatusView();
+            boolean result;
             switch (choice) {
                 case 1:
                     book = view.viewAddBook();
@@ -143,8 +145,13 @@ public class LibraryController {
     }
 
     private void handleUser() {
+        Book book;
+        BookOnLoan bookOnLoan;
+        HashMap<BookOnLoan, Integer> bookOnLoanMap;
         while (true) {
             int choice = view.userStatusView();
+            String str;
+            HashMap<Book, Integer> bookMap;
             switch (choice) {
                 case 1:
                     bookMap = bookService.getAll();
@@ -189,6 +196,7 @@ public class LibraryController {
     }
 
     private void handleFindBook() {
+        String str;
         while (true) {
             int choice = view.viewFindBook();
             switch (choice) {

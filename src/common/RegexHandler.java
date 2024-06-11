@@ -23,7 +23,7 @@ public class RegexHandler {
         return phoneNumber.matches(PHONE_NUMBER_REGEX);
     }
 
-    public static boolean isValidString(String str) {
+    public static boolean isNotValidString(String str) {
         return str.matches(STR_REGEX);
     }
 

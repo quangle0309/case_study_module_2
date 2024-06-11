@@ -1,12 +1,11 @@
-package services.impl;
+package services;
 
 import model.User;
-import repositories.impl.UsersRepo;
-import services.IUserService;
+import repositories.UsersRepo;
 
 import java.util.List;
 
-public class UserService implements IUserService {
+public class UserService{
     private static UserService userService;
 
     private UserService() {
@@ -29,14 +28,14 @@ public class UserService implements IUserService {
         return false;
     }
 
-    UsersRepo usersRepo = UsersRepo.getUsersRepo();
+    private final UsersRepo usersRepo = UsersRepo.getUsersRepo();
 
-    @Override
+
     public boolean add(User user) {
        return usersRepo.add(user);
     }
 
-    @Override
+
     public List<User> getAll() {
         return usersRepo.getAll();
     }

@@ -1,4 +1,4 @@
-package services.impl;
+package services;
 
 import model.User;
 

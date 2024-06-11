@@ -25,6 +25,10 @@ public class LibraryView {
         return view;
     }
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
     public int mainStatusView() {
         System.out.println("\n=================WELCOME-TO-LIBRARY=================\n");
         System.out.println("Bạn là: ");
@@ -44,10 +48,10 @@ public class LibraryView {
 
     public int adminStatusView() {
         System.out.println("\n================CHẾ-ĐỘ-QUẢN-TRỊ-VIÊN================\n");
-        System.out.println("1.\tTHÊM SÁCH               5.\tXÓA SÁCH");
-        System.out.println("2.\tSÁCH HIỆN TẠI           6.\tXÓA THÀNH VIÊN");
-        System.out.println("3.\tSÁCH ĐANG CHO MƯỢN      7.\tTÌM SÁCH");
-        System.out.println("4.\tDANH SÁCH THÀNH VIÊN    0.\tĐĂNG XUẤT");
+        System.out.println("1.\tTHÊM SÁCH                   5.\tXÓA SÁCH");
+        System.out.println("2.\tSÁCH HIỆN TẠI               6.\tXÓA THÀNH VIÊN");
+        System.out.println("3.\tSÁCH ĐANG CHO MƯỢN          7.\tTÌM SÁCH");
+        System.out.println("4.\tDANH SÁCH THÀNH VIÊN        0.\tĐĂNG XUẤT");
         int choice;
         do {
             choice = ExceptionHandler.checkChoice();
@@ -143,7 +147,7 @@ public class LibraryView {
 
     public void viewLoginMessage(boolean result) {
         if (result) {
-            System.out.println("\nĐăng nhập thành công!\n");
+            System.out.println(ANSI_GREEN + "\nĐăng nhập thành công!\n" + ANSI_RESET);
         } else {
             System.err.println("\nĐăng nhập thất bại!!!\n");
         }
@@ -151,7 +155,7 @@ public class LibraryView {
 
     public void viewRegisterMessage(boolean result) {
         if (result) {
-            System.out.println("\nĐăng ký thành công!\n");
+            System.out.println(ANSI_BLUE + "\nĐăng ký thành công!\n" + ANSI_RESET);
         } else {
             System.err.println("\nĐăng ký thất bại!!!\n");
         }
@@ -159,7 +163,7 @@ public class LibraryView {
 
     public void viewMessage(boolean result) {
         if (result) {
-            System.out.println("\nThao tác thành công!\n");
+            System.out.println(ANSI_BLUE + "\nThao tác thành công!\n" + ANSI_RESET);
         } else {
             System.err.println("\nThao tác thất bại!!!\n");
         }
@@ -170,13 +174,13 @@ public class LibraryView {
             System.out.println("\n------------------------THÊM-SÁCH------------------------\n");
             System.out.print("Tên sách: ");
             String name = sc.nextLine().toUpperCase();
-            if (!RegexHandler.isValidString(name)) {
+            if (!RegexHandler.isNotValidString(name)) {
                 System.err.println("Tên không hợp lệ!!!");
                 continue;
             }
             System.out.print("Tác giả: ");
             String author = sc.nextLine().toUpperCase();
-            if (!RegexHandler.isValidString(author)) {
+            if (!RegexHandler.isNotValidString(author)) {
                 System.err.println("Tên không hợp lệ!!!");
                 continue;
             }
@@ -204,24 +208,24 @@ public class LibraryView {
     }
 
     public void viewListUser(List<User> users) {
-        String leftAlignFormat = "| %-15s | %-15s | %-25s | %-15s |%n";
-        System.out.println("-------------------------------DANH-SÁCH-THÀNH-VIÊN-------------------------------\n");
-        System.out.format("+-----------------+-----------------+---------------------------+-----------------+%n");
-        System.out.format("| Tên Đăng Nhập   | Mật Khẩu        | Họ Tên                    | Số Điện Thoại   |%n");
-        System.out.format("+-----------------+-----------------+---------------------------+-----------------+%n");
+        String leftAlignFormat = "| %-15s | %-25s | %-15s |%n";
+        System.out.println("---------------------DANH-SÁCH-THÀNH-VIÊN-----------------------\n");
+        System.out.format("+-----------------+---------------------------+-----------------+%n");
+        System.out.format("| Tên Đăng Nhập   | Họ Tên                    | Số Điện Thoại   |%n");
+        System.out.format("+-----------------+---------------------------+-----------------+%n");
 
         for (User user : users) {
-            System.out.format(leftAlignFormat, user.getUsername(), user.getPassword(), user.getName(), user.getPhoneNumber());
+            System.out.format(leftAlignFormat, user.getUsername(), user.getName(), user.getPhoneNumber());
         }
 
-        System.out.format("+-----------------+-----------------+---------------------------+-----------------+%n");
+        System.out.format("+-----------------+---------------------------+-----------------+%n");
     }
 
     public void viewListBook(HashMap<Book, Integer> bookMap) {
         String leftAlignFormat = "| %-40s | %-25s | %-10s |%n";
         System.out.println("------------------------------------SÁCH-HIỆN-TẠI-----------------------------------\n");
         System.out.format("+------------------------------------------+---------------------------+------------+%n");
-        System.out.format("| Tên Sách                                 | Tên Tác Giả               | Số Lượng   |%n");
+        System.out.format("| Tên Sách                                 | Tác Giả                   | Số Lượng   |%n");
         System.out.format("+------------------------------------------+---------------------------+------------+%n");
 
         for (Book key: bookMap.keySet()) {
@@ -293,7 +297,7 @@ public class LibraryView {
         String leftAlignFormat = "| %-20s | %-35s | %-20s | %-10s |%n";
         System.out.println("----------------------------------------SÁCH-ĐANG-CHO-MƯỢN---------------------------------------\n");
         System.out.format("+----------------------+-------------------------------------+----------------------+------------+%n");
-        System.out.format("| Tên Người Mượn       | Tên Sách                            | Tên Tác Giả          |Số Lượng    |%n");
+        System.out.format("| Tài Khoản            | Tên Sách                            | Tác Giả              |Số Lượng    |%n");
         System.out.format("+----------------------+-------------------------------------+----------------------+------------+%n");
 
         for (BookOnLoan key: bookMap.keySet()) {

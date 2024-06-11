@@ -1,8 +1,7 @@
-package services.impl;
+package services;
 
-import model.Book;
 import model.BookOnLoan;
-import repositories.impl.BookOnLoanRepo;
+import repositories.BookOnLoanRepo;
 import views.LibraryView;
 
 import java.util.HashMap;
@@ -20,8 +19,8 @@ public class BookOnLoanService {
         return bookOnLoanService;
     }
 
-    LibraryView view = LibraryView.getLibraryView();
-    BookOnLoanRepo bookOnLoanRepo = BookOnLoanRepo.getBookOnLoanRepo();
+    private final LibraryView view = LibraryView.getLibraryView();
+    private final BookOnLoanRepo bookOnLoanRepo = BookOnLoanRepo.getBookOnLoanRepo();
 
     public void add(BookOnLoan bookOnLoan, Integer quantity) {
         bookOnLoanRepo.add(bookOnLoan, quantity);

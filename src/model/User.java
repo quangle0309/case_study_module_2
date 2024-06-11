@@ -56,7 +56,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "Tên đăng nhập: " + username + ", Mật khẩu: " + password + ", Họ tên: " + name + ", SDT: " + phoneNumber;
+        return "Tên đăng nhập: " + username + ", Họ tên: " + name + ", SDT: " + phoneNumber;
     }
 
     public void borrowBook(Book book) {

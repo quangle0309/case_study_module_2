@@ -1,14 +1,14 @@
-package services.impl;
+package services;
 
 import model.Book;
-import repositories.impl.BooksRepo;
+import repositories.BooksRepo;
 import views.LibraryView;
 
 import java.util.HashMap;
 
 public class BookService {
-    BooksRepo booksRepo = BooksRepo.getBooksRepo();
-    LibraryView view = LibraryView.getLibraryView();
+    private final BooksRepo booksRepo = BooksRepo.getBooksRepo();
+    private final LibraryView view = LibraryView.getLibraryView();
 
     private static BookService bookService;
 
